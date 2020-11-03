@@ -36,8 +36,8 @@ public class Main implements Runnable, ActionListener{
     playerOne = new JTextField("0");
     playerTwo = new JTextField("0");
     // set the location and size
-    playerOne.setBounds(50, 50, 500, 50);
-    playerTwo.setBounds(440, 50, 500, 50);
+    playerOne.setBounds(50, 50, 50, 500);
+    playerTwo.setBounds(700, 50, 50, 500);
     // add the text areas to the main panel
     mainPanel.add(playerOne);
     mainPanel.add(playerTwo);
@@ -45,31 +45,43 @@ public class Main implements Runnable, ActionListener{
     // sets the size of the arrays
     aButtons = new JButton[7];
     bButtons = new JButton[7];
+    
+    // creating accumulator variable for A buttons bounds
+    int j = 120;
 
     // creating the A Buttons
     for(int i = 1; i < aButtons.length; i++){
       aButtons[i] = new JButton("A" + i);
-      //// add the A Buttons to the main panel
-      mainPanel.add(aButtons);
+      // add the A buttons to the main panel
+      mainPanel.add(aButtons[i]);
       // set the actions command
       aButtons[i].setActionCommand("A" + i);
       // add ActionListener
       aButtons[i].addActionListener(this);
+      // set the location and size
+      aButtons[i].setBounds(j, 450, 50, 50);
+      j = j + 60;
     }
+
+    // creating accumulator variable for A buttons bounds
+    int k = 120;
+
 
     // creating the B Buttons
     for(int i = 1; i < bButtons.length; i++){
       bButtons[i] = new JButton("B" + i);
-      // add the B Buttons to the main panel
-      mainPanel.add(bButtons);
+      // add the B buttons to the main panel
+      mainPanel.add(bButtons[i]);
       // set the actions command
       bButtons[i].setActionCommand("B" + i);
       // add ActionListener
       bButtons[i].addActionListener(this);
+      // set the location and size
+      bButtons[i].setBounds(k, 300, 50, 50);
+      k = k + 60;
     }
 
-    // set location and size for A Buttons
-    aButtons[A1].setBounds(120, 300, 50, 50);
+  
 
     // add the main panel to the window
     frame.add(mainPanel);
