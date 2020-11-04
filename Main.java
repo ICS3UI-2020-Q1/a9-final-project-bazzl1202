@@ -11,8 +11,6 @@ public class Main implements Runnable, ActionListener{
 
   JTextField playerOne;
   JTextField playerTwo;
-  JTextField[] oneGems;
-  JTextField[] twoGems;
 
   JButton[] aButtons;
   JButton[] bButtons;
@@ -60,10 +58,10 @@ public class Main implements Runnable, ActionListener{
     
     // creating accumulator variable for A buttons bounds
     int j = 120;
-
+    
     // creating the A Buttons
     for(int i = 1; i < aButtons.length; i++){
-      aButtons[i] = new JButton("A" + i);
+      aButtons[i] = new JButton("4");
       // add the A buttons to the main panel
       mainPanel.add(aButtons[i]);
       // set the actions command
@@ -83,7 +81,7 @@ public class Main implements Runnable, ActionListener{
 
     // creating the B Buttons
     for(int i = 1; i < bButtons.length; i++){
-      bButtons[i] = new JButton("B" + i);
+      bButtons[i] = new JButton("4");
       // add the B buttons to the main panel
       mainPanel.add(bButtons[i]);
       // set the actions command
@@ -97,47 +95,7 @@ public class Main implements Runnable, ActionListener{
       k = k + 100;
     }
 
-    // sets the size of the arrays for the gem areas
-    oneGems = new JTextField[14];
-    twoGems = new JTextField[7];
 
-    // accumulator variable for text areas
-    int l = 120;
-
-    // creating player ones text areas
-    for(int i = 1; i < 7; i++){
-      oneGems[i] = new JTextField("4");
-      // add the gem areas to the main panel
-      mainPanel.add(oneGems[i]);
-      // set the actions command
-      oneGems[i].setActionCommand("" + (14 - i));
-      // add ActionListener
-      oneGems[i].addActionListener(this);
-      // set bigger font for one text areas
-      oneGems[i].setFont(biggerText);
-      // set the location and size
-      oneGems[i].setBounds(l, 200, 80, 80);
-      l = l + 100;
-    }
-
-    // accumulator variable for text areas
-    int h = 120;
-
-    // creating player ones text areas
-    for(int i = 1; i < twoGems.length; i++){
-      twoGems[i] = new JTextField("4");
-      // add the gem areas to the main panel
-      mainPanel.add(twoGems[i]);
-      // set the actions command
-      twoGems[i].setActionCommand("" + i);
-      // add ActionListener
-      twoGems[i].addActionListener(this);
-      // set bigger font for one text areas
-      twoGems[i].setFont(biggerText);
-      // set the location and size
-      twoGems[i].setBounds(h, 400, 80, 80);
-      h = h + 100;
-    }
 
     // initialize the JButton
     startButton = new JButton("Start");
@@ -198,6 +156,16 @@ public class Main implements Runnable, ActionListener{
           playerTwo.setEnabled(false);
 
          // player one clicks button
+         if(command.startsWith("A")){
+           // separate the A from the number
+           String number = command.substring(1);
+           // set string to integer
+           int buttonNum = Integer.parseInt(number);
+           // set button vlaue to zero
+           aButtons[1].setText("" + buttonNum);
+
+           
+          }
          // if statement to see if laned in pit
          whichPlayer = whichPlayer + 1;
         }
@@ -220,7 +188,8 @@ public class Main implements Runnable, ActionListener{
           }
           // disable player 1 text area
           playerOne.setEnabled(false);
-         //player 2 clicks button
+
+         
          // if statement to see if it landed in the pit
          whichPlayer = whichPlayer - 1;
         }
@@ -228,6 +197,36 @@ public class Main implements Runnable, ActionListener{
       }
      
     }
+    //player 2 clicks button
+    if(command.startsWith("B")){
+      // separate the B from the number
+      String number = command.substring(1);
+      // change string to integer
+      int buttonNum = Integer.parseInt(number);
+      // get the text from the button
+      String bButtonsText = bButtons[buttonNum].getText();
+      // change the string into an integer
+      int gemsInHand = Integer.parseInt(bButtonsText);
+      // set button value to zero
+      bButtons[buttonNum].setText("" + 0);
+
+      for(int i = gemsInHand; i <= 0; i--){
+        buttonNum = (buttonNum + 1);
+        // get the text from the button
+       bButtonsText = bButtons[buttonNum].getText();
+       // change the string into an integer
+       int bButtonsGems = Integer.parseInt(bButtonsText);
+       // add gems together with one 
+       int sum = bButtonsGems + 1;
+       //set button values
+       bButtons[buttonNum].setText("" + sum);
+      }
+      
+    
+      
+    
+    }
+
 
   }
 
