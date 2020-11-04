@@ -177,25 +177,54 @@ public class Main implements Runnable, ActionListener{
       // create variable used for player one and two
       int whichPlayer = 1;
       while(whichPlayer >= 0){
-        while(whichPlayer == 1){
+        while(whichPlayer <=1){
          // set the whos turn text to whos turn
           whosTurn.setText("Its player one's turn!");
 
+          // for loop to able all aButtons
+          for(int i = 1; i < aButtons.length; i++){
+           // able the a buttons so player one can play
+           aButtons[i].setEnabled(true);
+          }
+          // able player 1 text area
+          playerOne.setEnabled(true);
+
+          // for loop to disable all bButtons
           for(int i = 1; i < bButtons.length; i++){
            // disable the b buttons so player one can not touch them
            bButtons[i].setEnabled(false);
           }
           // disable player 2 text area
           playerTwo.setEnabled(false);
+
          // player one clicks button
          // if statement to see if laned in pit
          whichPlayer = whichPlayer + 1;
         }
-        while(whichPlayer == 2){
+        while(whichPlayer >= 2){
+          // set the whos turn text to whos turn
+          whosTurn.setText("Its player two's turn!");
+
+          // for loop to able all bButtons for player two
+          for(int i = 1; i < bButtons.length; i++){
+           // able the b buttons so player two can play
+           bButtons[i].setEnabled(true);
+          }
+          // able player 2 text area
+          playerTwo.setEnabled(true); 
+
+          // for loop to disable all aButtons
+          for(int i = 1; i < aButtons.length; i++){
+           // disable the a buttons so player two can not touch them
+           aButtons[i].setEnabled(false);
+          }
+          // disable player 1 text area
+          playerOne.setEnabled(false);
          //player 2 clicks button
          // if statement to see if it landed in the pit
          whichPlayer = whichPlayer - 1;
         }
+        whichPlayer = -1;
       }
      
     }
